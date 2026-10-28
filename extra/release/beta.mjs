@@ -11,8 +11,6 @@ import {
     createDistTarGz,
     createReleasePR,
 } from "./lib.mjs";
-import { resolvePreviousVersionRevision } from "../generate-changelog.mjs";
-import semver from "semver";
 
 const repoNames = getRepoNames();
 const version = process.env.RELEASE_BETA_VERSION;
