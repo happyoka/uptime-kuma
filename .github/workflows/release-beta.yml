@@ -42,9 +42,6 @@ jobs:
       - name: Install dependencies
         run: npm clean-install --no-fund
 
-      - name: Install dependencies
-        run: node extra/release/install-deps.mjs        
-
       - name: Build dist and upload assets to the draft release
         env:
           RELEASE_VERSION: ${{ inputs.version }}
