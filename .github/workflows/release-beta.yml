@@ -65,5 +65,5 @@ jobs:
           RELEASE_VERSION: ${{ inputs.version }}
           RELEASE_IS_BETA: true
           DRY_RUN: ${{ inputs.dry_run }}
-        run: node extra/release/build-images.mjs          
+        run: node extra/release/beta.mjs          
 
