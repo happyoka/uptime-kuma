@@ -40,7 +40,10 @@ jobs:
           node-version: 26
 
       - name: Install dependencies
-        run: npm clean-install --no-fund
+        run: npm clean-install --no-fund 
+
+      - name: Install other dependencies
+        run: npm install dotenv@16.0.3 semver@7.5.4 tar@6.2.1
 
       - name: Build dist and upload assets to the draft release
         env:
