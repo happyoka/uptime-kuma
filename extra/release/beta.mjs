@@ -27,39 +27,8 @@ if (dryRun) {
 
 console.log("RELEASE_BETA_VERSION:", version);
 
-// Check if the current branch is "release-{version}"
-checkReleaseBranch(branchName);
-
-// Check if the version is a valid semver
-checkVersionFormat(version);
-
-try {
-    const previousRevision = resolvePreviousVersionRevision(previousVersion);
-    console.log("Changelog previous revision:", previousRevision);
-} catch (error) {
-    console.error(error.message);
-    process.exit(1);
-}
-
-// Check if the semver identifier is "beta"
-const semverIdentifier = semver.prerelease(version);
-console.log("Semver identifier:", semverIdentifier);
-if (semverIdentifier[0] !== "beta") {
-    console.error("VERSION should have a semver identifier of 'beta'");
-    process.exit(1);
-}
-
 // Check if docker is running
 checkDocker();
-
-// Check if the tag exists
-await checkTagExists(repoNames, version);
-
-// node extra/beta/update-version.js
-await import("../beta/update-version.mjs");
-
-// Create Pull Request (gh pr create will handle pushing the branch)
-await createReleasePR(version, previousVersion, dryRun, branchName, githubRunId);
 
 // Build frontend dist
 buildDist();
