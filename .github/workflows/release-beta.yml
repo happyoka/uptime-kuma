@@ -70,3 +70,10 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build and push images
+        env:
+          RELEASE_VERSION: ${{ inputs.version }}
+          RELEASE_IS_BETA: true
+          DRY_RUN: ${{ inputs.dry_run }}
+        run: node extra/release/build-images.mjs          
+
